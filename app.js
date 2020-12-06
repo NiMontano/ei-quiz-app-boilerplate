@@ -5,30 +5,119 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'What is the abbreviation for the agency that Archer works for?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'CIA',
+        'ODIN',
+        'MI6',
+        'ISIS'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'ISIS'
     },
     {
-      question: 'What is the current year?',
+      question: 'How long was Archer in a coma?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        '1 year',
+        '2 years',
+        '3 years',
+        '4 years'
       ],
-      correctAnswer: '2019'
+      correctAnswer: '3 years'
+    },
+    {
+      question: 'What is the name of Carol\'s/Cheryl\'s ocelot?',
+      answers: [
+        'Babu',
+        'Bobo',
+        'Bubbles',
+        'Bear'
+      ],
+      correctAnswer: 'Babu'
+    },
+    {
+      question: 'Who is Archer\'s father?',
+      answers: [
+        'Nikolai Jakov, head of the KGB',
+        'Unknown',
+        'Len Trexler',
+        'Ray Gillette'
+      ],
+      correctAnswer: 'Unknown'
+    },
+    {
+      question: 'Who does not have bionic limbs?',
+      answers: [
+        'Ray Gillette',
+        'Conway Stern',
+        'Mallory Archer',
+        'Other Barry'
+      ],
+      correctAnswer: 'Mallory Archer'
     }
   ],
   quizStarted: false,
   questionNumber: 0,
   score: 0
 };
+
+i = store.questionNumber;
+const currentQuestion = store.questions[i].question;
+const currentAnswers = store.questions[i].answers;
+
+//function answerQuestion() {
+  //store.questionNumber = i;
+  
+  //console.log('`answerQuestion` ran');
+  
+//};
+
+//for (let i = 0; i < store.length; i++) 
+
+function beginQuiz() {  
+
+  console.log("something here")
+
+  $(document).on("click", ".start",function() {
+    console.log("button clicked")
+    store.quizStarted = true
+    renderQuestion();
+  })
+
+  if (store.quizStarted == false) {
+    $('.js-this-question').html(`<button class="start" type = "button">Start Quiz</button>`)
+  };
+
+}
+
+function renderQuestion() {
+  console.log('`renderQuestion` ran');
+
+  const theAnswers = currentAnswers.map(function (currentAnswer) {
+    console.log(currentAnswer)
+    return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
+  }).join('');
+
+  theEntireQuestion = `${currentQuestion}<form id="next">${theAnswers}<input type="submit"></form>`;
+
+  $('.js-this-question').html(theEntireQuestion);
+
+  $("#next").submit(function(event) {
+    $('theEntireQuestion').each(function() {
+      i = i++;
+      renderQuestion();
+      console.log("for loop ran")
+    });
+  });
+  //answerQuestion();
+
+};
+ 
+function handleArcherQuiz() {
+  beginQuiz();
+  //renderQuestion();
+}
+
+$(handleArcherQuiz);
 
 /**
  * 
