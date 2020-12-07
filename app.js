@@ -94,6 +94,8 @@ function beginQuiz() {
 
 function updateQuestion() {
   $("#submit-answer").submit(function(event) {
+
+    
      
     const rightAnswer = store.questions[i].correctAnswer;
 
@@ -138,7 +140,7 @@ function renderQuestion() {
     return `<li><input type="radio" name="answer" class="answer" value="${currentAnswer}" required> ${currentAnswer}</li>`;
     }).join('');
   
-    theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
+    theEntireQuestion = `<h3>Score: ${store.score} /10</h3> ${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
   
     $('.js-this-question').html(theEntireQuestion);
 
