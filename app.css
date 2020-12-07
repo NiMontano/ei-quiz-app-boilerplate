@@ -19,15 +19,21 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: #ffffff;
   margin: 5%;
+  padding: 0;
+  list-style-type: none;
 }
 
 h1, h2, h3 {
   font-family: bigFish;
-}; 
+}
+
+h1 {
+  padding: 30px;
+}
 
 .this-question {
-  padding-bottom: 30px;
+  padding-bottom: 5%;
+  padding-left: 5%;
 }
