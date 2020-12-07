@@ -91,10 +91,33 @@ function beginQuiz() {
 
 }
 
+function updateQuestion() {
+  $("#submit-answer").submit(function(event) {
+    //alert ("The correct answer is " + `${rightAnswer}` + ".")
+      
+    i = ++i;
+
+    const currentQuestion = store.questions[i].question;
+    const currentAnswers = store.questions[i].answers;
+    const rightAnswer = store.questions[i].correctAnswer;
+
+    const theAnswers = currentAnswers.map(function (currentAnswer) {
+      return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
+      }).join('');
+
+      theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
+
+      $('.js-this-question').html(theEntireQuestion);
+
+  });
+
+  console.log("`updateQuestion` is running");
+};
+
 function renderQuestion() {
   console.log('`renderQuestion` ran');
   
-  for (let y = 0; y < store.questions.length; y++) {
+  
     const theAnswers = currentAnswers.map(function (currentAnswer) {
       return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
     }).join('');
@@ -102,36 +125,21 @@ function renderQuestion() {
     theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
   
     $('.js-this-question').html(theEntireQuestion);
-  
-    $("#submit-answer").submit(function(event) {
-          //alert ("The correct answer is " + `${rightAnswer}` + ".")
-        
-          i = ++i;
-  
-          const currentQuestion = store.questions[i].question;
-          const currentAnswers = store.questions[i].answers;
-          const rightAnswer = store.questions[i].correctAnswer;
 
-          const theAnswers = currentAnswers.map(function (currentAnswer) {
-            return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
-          }).join('');
+      store.questions.forEach(function(store) {
+      updateQuestion();
+    });
   
-          theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
-  
-          $('.js-this-question').html(theEntireQuestion);
-  
-      });
   
      //console.log(theEntireQuestion);
-    };
   };
   //answerQuestion();
 
 
  
 $(function handleArcherQuiz() {
-  beginQuiz();
   //renderQuestion();
+  beginQuiz();
 });
 
 /**
