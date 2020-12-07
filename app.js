@@ -93,24 +93,31 @@ function beginQuiz() {
 
 function updateQuestion() {
   $("#submit-answer").submit(function(event) {
-      
+     
+    const rightAnswer = store.questions[i].correctAnswer;
+
+    
+    
     i = ++i;
 
     const currentQuestion = store.questions[i].question;
     const currentAnswers = store.questions[i].answers;
-    const rightAnswer = store.questions[i].correctAnswer;
+    
 
     console.log(i);
 
-    alert ("The correct answer is " + `${rightAnswer}` + ".");
+    
 
     const theAnswers = currentAnswers.map(function (currentAnswer) {
-      return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
+      
+      return `<li><input type="radio" name="answer" required> ${currentAnswer}</li>`;
       }).join('');
 
       theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
 
       $('.js-this-question').html(theEntireQuestion);
+
+      alert ("The correct answer is " + `${rightAnswer}` + ".");
 
       renderQuestion();
 
@@ -125,10 +132,9 @@ function renderQuestion() {
 
   const currentQuestion = store.questions[i].question;
   const currentAnswers = store.questions[i].answers;
- 
-  
+
   const theAnswers = currentAnswers.map(function (currentAnswer) {
-    return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
+    return `<li><input type="radio" name="answer" required> ${currentAnswer}</li>`;
     }).join('');
   
     theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
