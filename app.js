@@ -118,11 +118,10 @@ const questionAndAnswer = store
 
 function beginQuiz() {  
   i = 0;
-const currentQuestion = store.questions[i].question;
-const currentAnswers = store.questions[i].answers;
-const rightAnswer = store.questions[1-i].correctAnswer;
+  const currentQuestion = store.questions[i].question;
+  const currentAnswers = store.questions[i].answers;
+  const rightAnswer = store.questions[1-i].correctAnswer;
 
-  console.log("something here")
   $('.js-this-question').html(`<button class="start" type = "button">Start Quiz</button>`)
 
   $(document).on("click", ".start",function() {
@@ -133,8 +132,6 @@ const rightAnswer = store.questions[1-i].correctAnswer;
       renderQuestion();
     };
   });
-
-  
 }
 
 function updateQuestion() {
@@ -145,8 +142,6 @@ function updateQuestion() {
     //const currentQuestionNumber = store.questionNumber[i]
 
     i = ++i;
-
-    
 
     const selectedAnswer = $("input[type='radio']:checked").val();
 
@@ -183,25 +178,18 @@ function updateQuestion() {
 
       $(document).on("click", ".restart",function() {
         store.quizStarted = false;
-        console.log("button clicked");
-        console.log(store.quizStarted);
         beginQuiz();
       });
       return;
     }
       renderQuestion();
   });
-
-  console.log("`updateQuestion` is running");
 };
 
 function renderQuestion() {
 
-  console.log(store.quizStarted);
-
   const currentQuestion = store.questions[i].question;
   const currentAnswers = store.questions[i].answers;
-
   const theAnswers = currentAnswers.map(function (currentAnswer) {
     return `<li><input type="radio" name="answer" class="answer" value="${currentAnswer}" required> ${currentAnswer}</li><br>`;
   }).join('');
