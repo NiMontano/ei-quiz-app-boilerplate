@@ -84,11 +84,12 @@ function beginQuiz() {
 function updateQuestion() {
   $("#submit-answer").submit(function(event) {
     const rightAnswer = store.questions[i].correctAnswer;
+    const currentQuestion = store.questions[i].question;
+    const currentAnswers = store.questions[i].answers;
 
     i = ++i;
 
-    const currentQuestion = store.questions[i].question;
-    const currentAnswers = store.questions[i].answers;
+    
 
     const selectedAnswer = $("input[type='radio']:checked").val();
 
@@ -110,6 +111,9 @@ function updateQuestion() {
       alert("The correct answer is " + `${rightAnswer}`);
     };
 
+    if (store.questionNumber > 5) {
+      $('.js-this-question').html(`<h2>Finished!</h2><h3>"Your score is: ${store.score}"</h3><button class="start" type = "button">Start Quiz</button>`);
+    }
       renderQuestion();
 
   });
@@ -126,14 +130,14 @@ function renderQuestion() {
 
   const theAnswers = currentAnswers.map(function (currentAnswer) {
     return `<li><input type="radio" name="answer" class="answer" value="${currentAnswer}" required> ${currentAnswer}</li>`;
-    }).join('');
+  }).join('');
   
-    theEntireQuestion = `<h2> Question ${store.questionNumber}</h2><h3>Score: ${store.score} /10</h3> ${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
+  theEntireQuestion = `<h2> Question ${store.questionNumber}</h2><h3>Score: ${store.score} /10</h3> ${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
   
-    $('.js-this-question').html(theEntireQuestion);
+  $('.js-this-question').html(theEntireQuestion);
 
-    updateQuestion();
-  };
+  updateQuestion();
+};
 
 
  
