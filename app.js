@@ -38,9 +38,9 @@ const store = {
       question: 'Who is Archer\'s father?',
       answers: [
         'Nikolai Jakov, head of the KGB',
-        'Unknown',
         'Len Trexler',
-        'Ray Gillette'
+        'Ray Gillette',
+        'Unknown'
       ],
       correctAnswer: 'Unknown'
     },
@@ -57,9 +57,9 @@ const store = {
     {
       question: 'What is the name of Archer\'s child?',
       answers: [
-        'Seamus',
-        'Woodhouse',
         'Abbejean',
+        'Woodhouse',
+        'Seamus',
         'Ron Cadillac'
       ],
       correctAnswer: 'Abbejean'
@@ -69,7 +69,7 @@ const store = {
       answers: [
         'Aneyursm',
         'Bermuda Triangle',
-        'Robots',
+        'Sentient Robots',
         'Tigers'
       ],
       correctAnswer: 'Tigers'
@@ -170,7 +170,17 @@ function updateQuestion() {
 
     if (store.questionNumber > 10) {
 
-      $('.js-this-question').html(`<h2>Finished!</h2><h3>Your score is: ${store.score}</h3><button class="restart" type = "button">Restart Quiz</button>`);
+      $('.js-this-question').html(`<h2>Finished!</h2><h3>Your score is: ${store.score}`);
+
+      if(store.score <= 4) {
+        $('.js-this-question').append('<h3>DANGER ZONE!!<br>Watch more Archer.</h3></h3><button class="restart" type = "button">Restart Quiz</button>');
+      } else if(store.score <= 7) {
+        $('.js-this-question').append('<h3>What are you, hourly?<br>Watch more Archer.</h3></h3><button class="restart" type = "button">Restart Quiz</button>');
+      } else {
+        $('.js-this-question').append('<h3>Holy Sh*tsnacks!<br>Congratulations</h3></h3><button class="restart" type = "button">Restart Quiz</button>');
+      }
+    
+
       $(document).on("click", ".restart",function() {
         store.quizStarted = false;
         console.log("button clicked");
