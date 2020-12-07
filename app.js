@@ -67,8 +67,8 @@ const store = {
     {
       question: 'What is not one of Archer\'s fears?',
       answers: [
-        'Aneyursm',
-        'Bermuda Triangle',
+        'Aneurysm',
+        'The Bermuda Triangle',
         'Sentient Robots',
         'Tigers'
       ],
