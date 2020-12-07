@@ -53,6 +53,56 @@ const store = {
         'Other Barry'
       ],
       correctAnswer: 'Cyril Figgis'
+    },
+    {
+      question: 'What is the name of Archer\'s child?',
+      answers: [
+        'Seamus',
+        'Woodhouse',
+        'Abbejean',
+        'Ron Cadillac'
+      ],
+      correctAnswer: 'Abbejean'
+    },
+    {
+      question: 'What is not one of Archer\'s fears?',
+      answers: [
+        'Aneyursm',
+        'Bermuda Triangle',
+        'Robots',
+        'Tigers'
+      ],
+      correctAnswer: 'Tigers'
+    },
+    {
+      question: 'What color turtleneck does Archer wear on covert spy missions?',
+      answers: [
+        'Black',
+        'Slightly Darker Black',
+        'Navy',
+        'Aubergine'
+      ],
+      correctAnswer: 'Slightly Darker Black'
+    },
+    {
+      question: 'What has not been an occupation of Archer when he\'s run away?',
+      answers: [
+      'Videographer',
+      'Pirate King',
+      'Island Bartender',
+      'Burger Chef'
+      ],
+      correctAnswer: 'Videographer'
+    },
+    { 
+      question: 'Was this hard?',
+      answers: [
+        'Sploosh',
+        'YOU\'RE NOT MY SUPERVISOR',
+        'Phrasing, BOOM!',
+        'Innapprops'
+      ],
+      correctAnswer: 'Phrasing, BOOM!'
     }
   ],
   quizStarted: false,
@@ -118,7 +168,7 @@ function updateQuestion() {
       alert("The correct answer is " + `${rightAnswer}`);
     };
 
-    if (store.questionNumber > 5) {
+    if (store.questionNumber > 10) {
 
       $('.js-this-question').html(`<h2>Finished!</h2><h3>Your score is: ${store.score}</h3><button class="restart" type = "button">Restart Quiz</button>`);
       $(document).on("click", ".restart",function() {
