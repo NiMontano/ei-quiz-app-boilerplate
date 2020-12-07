@@ -21,12 +21,13 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #ffffff;
+  margin: 5%;
 }
 
 h1, h2, h3 {
   font-family: bigFish;
 }; 
 
-/*.this-question {
-  padding: 
-}*/
+.this-question {
+  padding-bottom: 30px;
+}
