@@ -67,18 +67,24 @@ const rightAnswer = store.questions[1-i].correctAnswer;
 const questionAndAnswer = store
 
 function beginQuiz() {  
+  i = 0;
+const currentQuestion = store.questions[i].question;
+const currentAnswers = store.questions[i].answers;
+const rightAnswer = store.questions[1-i].correctAnswer;
 
   console.log("something here")
+  $('.js-this-question').html(`<button class="start" type = "button">Start Quiz</button>`)
 
   $(document).on("click", ".start",function() {
-    store.quizStarted = true
-    store.questionNumber = 1
-    renderQuestion();
+    store.quizStarted = true;
+    store.questionNumber = 1;
+    store.score = 0;
+    if (store.quizStarted == true) {
+      renderQuestion();
+    };
   });
 
-  if (store.quizStarted == false) {
-    $('.js-this-question').html(`<button class="start" type = "button">Start Quiz</button>`)
-  };
+  
 }
 
 function updateQuestion() {
@@ -86,6 +92,7 @@ function updateQuestion() {
     const rightAnswer = store.questions[i].correctAnswer;
     const currentQuestion = store.questions[i].question;
     const currentAnswers = store.questions[i].answers;
+    //const currentQuestionNumber = store.questionNumber[i]
 
     i = ++i;
 
@@ -112,10 +119,17 @@ function updateQuestion() {
     };
 
     if (store.questionNumber > 5) {
-      $('.js-this-question').html(`<h2>Finished!</h2><h3>"Your score is: ${store.score}"</h3><button class="start" type = "button">Start Quiz</button>`);
+
+      $('.js-this-question').html(`<h2>Finished!</h2><h3>Your score is: ${store.score}</h3><button class="restart" type = "button">Restart Quiz</button>`);
+      $(document).on("click", ".restart",function() {
+        store.quizStarted = false;
+        console.log("button clicked");
+        console.log(store.quizStarted);
+        beginQuiz();
+      });
+      return;
     }
       renderQuestion();
-
   });
 
   console.log("`updateQuestion` is running");
@@ -123,7 +137,7 @@ function updateQuestion() {
 
 function renderQuestion() {
 
-  console.log('`renderQuestion` ran');
+  console.log(store.quizStarted);
 
   const currentQuestion = store.questions[i].question;
   const currentAnswers = store.questions[i].answers;
