@@ -49,10 +49,10 @@ const store = {
       answers: [
         'Ray Gillette',
         'Conway Stern',
-        'Mallory Archer',
+        'Cyril Figgis',
         'Other Barry'
       ],
-      correctAnswer: 'Mallory Archer'
+      correctAnswer: 'Cyril Figgis'
     }
   ],
   quizStarted: false,
@@ -93,7 +93,6 @@ function beginQuiz() {
 
 function updateQuestion() {
   $("#submit-answer").submit(function(event) {
-    //alert ("The correct answer is " + `${rightAnswer}` + ".")
       
     i = ++i;
 
@@ -109,26 +108,33 @@ function updateQuestion() {
 
       $('.js-this-question').html(theEntireQuestion);
 
+      renderQuestion();
+
   });
 
   console.log("`updateQuestion` is running");
 };
 
 function renderQuestion() {
+
   console.log('`renderQuestion` ran');
+
+  const currentQuestion = store.questions[i].question;
+  const currentAnswers = store.questions[i].answers;
+  const rightAnswer = store.questions[i].correctAnswer;
   
   
-    const theAnswers = currentAnswers.map(function (currentAnswer) {
-      return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
+  const theAnswers = currentAnswers.map(function (currentAnswer) {
+    return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
     }).join('');
   
     theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
   
     $('.js-this-question').html(theEntireQuestion);
 
-      store.questions.forEach(function(store) {
+      //store.questions.forEach(function(store) {
       updateQuestion();
-    });
+    //});
   
   
      //console.log(theEntireQuestion);
