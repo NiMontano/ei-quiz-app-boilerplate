@@ -5,7 +5,7 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What is the abbreviation for the agency that Archer works for?',
+      question: 'What is the abbreviation of the agency that Archer works for?',
       answers: [
         'CIA',
         'ODIN',
@@ -66,15 +66,6 @@ const currentAnswers = store.questions[i].answers;
 const rightAnswer = store.questions[1-i].correctAnswer;
 const questionAndAnswer = store
 
-//function answerQuestion() {
-  //store.questionNumber = i;
-  
-  //console.log('`answerQuestion` ran');
-  
-//};
-
-//for (let i = 0; i < store.length; i++) 
-
 function beginQuiz() {  
 
   console.log("something here")
@@ -83,20 +74,15 @@ function beginQuiz() {
     store.quizStarted = true
     store.questionNumber = 1
     renderQuestion();
-    //console.log(store.questionNumber);
   });
 
   if (store.quizStarted == false) {
     $('.js-this-question').html(`<button class="start" type = "button">Start Quiz</button>`)
   };
-
 }
 
 function updateQuestion() {
   $("#submit-answer").submit(function(event) {
-
-    
-     
     const rightAnswer = store.questions[i].correctAnswer;
 
     i = ++i;
@@ -116,9 +102,11 @@ function updateQuestion() {
     $('.js-this-question').html(theEntireQuestion);
 
     if (selectedAnswer == rightAnswer) {
+      store.questionNumber = ++store.questionNumber;
       store.score = ++store.score;
       alert("Correct!");
     } else {
+      store.questionNumber = ++store.questionNumber
       alert("The correct answer is " + `${rightAnswer}`);
     };
 
@@ -140,23 +128,16 @@ function renderQuestion() {
     return `<li><input type="radio" name="answer" class="answer" value="${currentAnswer}" required> ${currentAnswer}</li>`;
     }).join('');
   
-    theEntireQuestion = `<h3>Score: ${store.score} /10</h3> ${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
+    theEntireQuestion = `<h2> Question ${store.questionNumber}</h2><h3>Score: ${store.score} /10</h3> ${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
   
     $('.js-this-question').html(theEntireQuestion);
 
-      //store.questions.forEach(function(store) {
-      updateQuestion();
-    //});
-  
-  
-     //console.log(theEntireQuestion);
+    updateQuestion();
   };
-  //answerQuestion();
 
 
  
 $(function handleArcherQuiz() {
-  //renderQuestion();
   beginQuiz();
 });
 
