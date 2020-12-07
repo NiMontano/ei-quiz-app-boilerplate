@@ -63,7 +63,7 @@ const store = {
 i = 0;
 const currentQuestion = store.questions[i].question;
 const currentAnswers = store.questions[i].answers;
-const rightAnswer = store.questions[i].correctAnswer;
+const rightAnswer = store.questions[1-i].correctAnswer;
 const questionAndAnswer = store
 
 //function answerQuestion() {
@@ -100,6 +100,10 @@ function updateQuestion() {
     const currentAnswers = store.questions[i].answers;
     const rightAnswer = store.questions[i].correctAnswer;
 
+    console.log(i);
+
+    alert ("The correct answer is " + `${rightAnswer}` + ".");
+
     const theAnswers = currentAnswers.map(function (currentAnswer) {
       return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
       }).join('');
@@ -121,8 +125,7 @@ function renderQuestion() {
 
   const currentQuestion = store.questions[i].question;
   const currentAnswers = store.questions[i].answers;
-  const rightAnswer = store.questions[i].correctAnswer;
-  
+ 
   
   const theAnswers = currentAnswers.map(function (currentAnswer) {
     return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
