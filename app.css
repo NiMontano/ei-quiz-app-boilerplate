@@ -6,3 +6,27 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+
+@font-face {
+  font-family: bigFish;
+  src: url(Bigfish.ttf);
+}
+
+body {
+  background-image: url("web_largecoverart_series_archer_540x796.jpg");
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+h1, h2, h3 {
+  font-family: bigFish;
+}; 
+
+/*.this-question {
+  padding: 
+}*/
