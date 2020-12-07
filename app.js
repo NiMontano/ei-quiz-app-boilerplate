@@ -80,9 +80,10 @@ function beginQuiz() {
   console.log("something here")
 
   $(document).on("click", ".start",function() {
-    console.log("button clicked")
     store.quizStarted = true
+    store.questionNumber = 1
     renderQuestion();
+    //console.log(store.questionNumber);
   });
 
   if (store.quizStarted == false) {
@@ -96,28 +97,28 @@ function updateQuestion() {
      
     const rightAnswer = store.questions[i].correctAnswer;
 
-    
-    
     i = ++i;
 
     const currentQuestion = store.questions[i].question;
     const currentAnswers = store.questions[i].answers;
-    
 
-    console.log(i);
-
-    
+    const selectedAnswer = $("input[type='radio']:checked").val();
 
     const theAnswers = currentAnswers.map(function (currentAnswer) {
       
-      return `<li><input type="radio" name="answer" required> ${currentAnswer}</li>`;
-      }).join('');
+      return `<li><input type="radio" name="answer" value="${currentAnswer}" required> ${currentAnswer}</li>`;
+    }).join('');
 
-      theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
+    theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
 
-      $('.js-this-question').html(theEntireQuestion);
+    $('.js-this-question').html(theEntireQuestion);
 
-      alert ("The correct answer is " + `${rightAnswer}` + ".");
+    if (selectedAnswer == rightAnswer) {
+      store.score = ++store.score;
+      alert("Correct!");
+    } else {
+      alert("The correct answer is " + `${rightAnswer}`);
+    };
 
       renderQuestion();
 
@@ -134,7 +135,7 @@ function renderQuestion() {
   const currentAnswers = store.questions[i].answers;
 
   const theAnswers = currentAnswers.map(function (currentAnswer) {
-    return `<li><input type="radio" name="answer" required> ${currentAnswer}</li>`;
+    return `<li><input type="radio" name="answer" class="answer" value="${currentAnswer}" required> ${currentAnswer}</li>`;
     }).join('');
   
     theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
