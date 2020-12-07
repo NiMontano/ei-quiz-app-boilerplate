@@ -193,10 +193,10 @@ function renderQuestion() {
   const currentAnswers = store.questions[i].answers;
 
   const theAnswers = currentAnswers.map(function (currentAnswer) {
-    return `<li><input type="radio" name="answer" class="answer" value="${currentAnswer}" required> ${currentAnswer}</li>`;
+    return `<li><input type="radio" name="answer" class="answer" value="${currentAnswer}" required> ${currentAnswer}</li><br>`;
   }).join('');
   
-  theEntireQuestion = `<h2> Question ${store.questionNumber}</h2><h3>Score: ${store.score} /10</h3> ${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
+  theEntireQuestion = `<h2> Question ${store.questionNumber}</h2><h3>Score: ${store.score} /10</h3> ${currentQuestion}<br><br><form id="submit-answer">${theAnswers}<input type="submit"></form>`;
   
   $('.js-this-question').html(theEntireQuestion);
 
