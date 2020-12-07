@@ -60,9 +60,11 @@ const store = {
   score: 0
 };
 
-i = store.questionNumber;
+i = 0;
 const currentQuestion = store.questions[i].question;
 const currentAnswers = store.questions[i].answers;
+const rightAnswer = store.questions[i].correctAnswer;
+const questionAndAnswer = store
 
 //function answerQuestion() {
   //store.questionNumber = i;
@@ -81,7 +83,7 @@ function beginQuiz() {
     console.log("button clicked")
     store.quizStarted = true
     renderQuestion();
-  })
+  });
 
   if (store.quizStarted == false) {
     $('.js-this-question').html(`<button class="start" type = "button">Start Quiz</button>`)
@@ -93,31 +95,38 @@ function renderQuestion() {
   console.log('`renderQuestion` ran');
 
   const theAnswers = currentAnswers.map(function (currentAnswer) {
-    console.log(currentAnswer)
     return `<li><input type="radio" name="answer"> ${currentAnswer}</li>`;
   }).join('');
 
-  theEntireQuestion = `${currentQuestion}<form id="next">${theAnswers}<input type="submit"></form>`;
+  theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
 
   $('.js-this-question').html(theEntireQuestion);
 
-  $("#next").submit(function(event) {
-    $('theEntireQuestion').each(function() {
-      i = i++;
-      renderQuestion();
-      console.log("for loop ran")
+  $("#submit-answer").submit(function(event) {
+        //alert ("The correct answer is " + `${rightAnswer}` + ".")
+      
+        i = ++i;
+
+        const currentQuestion = store.questions[i].question;
+        const currentAnswers = store.questions[i].answers;
+        const rightAnswer = store.questions[i].correctAnswer;
+
+        theEntireQuestion = `${currentQuestion}<form id="submit-answer">${theAnswers}<input type="submit"></form>`;
+
+        $('.js-this-question').html(theEntireQuestion);
+
     });
-  });
+
+   //console.log(theEntireQuestion);
+  };
   //answerQuestion();
 
-};
+
  
-function handleArcherQuiz() {
+$(function handleArcherQuiz() {
   beginQuiz();
   //renderQuestion();
-}
-
-$(handleArcherQuiz);
+});
 
 /**
  * 
