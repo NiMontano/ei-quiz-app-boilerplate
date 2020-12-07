@@ -21,10 +21,6 @@ html {
 
 }
 
-/*body {
-  background-image: url("web_largecoverart_series_archer_540x796.jpg");
-}*/
-
 .container {
   display: flex;
   flex-direction: column;
@@ -45,4 +41,8 @@ h1 {
 
 .this-question {
   padding: 2%;
+}
+
+ul {
+  font-family: Helvetica, sans-serif;
 }
